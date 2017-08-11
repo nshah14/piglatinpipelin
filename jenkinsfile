@@ -12,15 +12,34 @@ node('testing') {
     
     }
 
-    stage('Build Docker'){
+    stage('Install Docker'){
         echo 'Building docker image'
+        sh 'curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -'
+        sh 'sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"'
+        sh 'sudo apt-get update'
+        sh 'apt-cache policy docker-ce'
+        sh 'sudo apt-get install -y docker-ce'
+        sh 'sudo systemctl status docker'
            /**
+               
                docker-machine env
                docker build -t nshah/piglatin .
                eval $(docker-machine env)
                docker build -t nshah/piglatin .
                
            */ 
+    }
+
+    stage('Build Docker'){
+        echo 'Building docker image'
+           
+               
+        sh 'docker-machine env'
+        sh 'docker build -t nshah/piglatin .'
+        sh 'eval $(docker-machine env)'
+        sh 'docker build -t nshah/piglatin .'
+        
+        
     }
 
     stage('Deploy'){
