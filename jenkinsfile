@@ -35,7 +35,7 @@ node('testing') {
            
                
         // sh 'docker-machine env'
-        sh 'docker build -t nshah/piglatin .'
+        sh ' sudo docker build -t nshah/piglatin .'
         // sh 'eval $(docker-machine env)'
         // sh 'docker build -t nshah/piglatin .'
         
