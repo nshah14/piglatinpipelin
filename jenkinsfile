@@ -34,10 +34,10 @@ node('testing') {
         echo 'Building docker image'
            
                
-        sh 'docker-machine env'
+        // sh 'docker-machine env'
         sh 'docker build -t nshah/piglatin .'
-        sh 'eval $(docker-machine env)'
-        sh 'docker build -t nshah/piglatin .'
+        // sh 'eval $(docker-machine env)'
+        // sh 'docker build -t nshah/piglatin .'
         
         
     }
